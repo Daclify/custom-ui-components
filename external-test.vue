@@ -14,10 +14,6 @@ module.exports = {
     token:{
       type: Object,
       default: ()=>{return {contract:"eosio.token",symbol:"EOS"}}
-    },
-    account:{
-      type: String,
-      default: ""
     }
   },
   data () {
@@ -34,7 +30,7 @@ module.exports = {
     let query = {
       json: true,
       code: this.token.contract,
-      scope: this.account,
+      scope: account,
       table: "accounts",
       limit: 1,
     };
