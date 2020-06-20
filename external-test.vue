@@ -1,9 +1,8 @@
 <template>
   <div>
-    <q-btn label="test" color="primary" @click="getUserBalance()" :loading="is_loading"></q-btn>
-    <pre>{{res}}</pre>
-    {{is_loading}}
-    
+    Hello {{$store.state.ual.accountName}}
+    <q-btn label="test" color="primary" @click="getUserBalance($store.state.ual.accountName)" :loading="is_loading"></q-btn>
+    <pre v-if="res" >{{res}}</pre>
   </div>
 </template>
 
@@ -23,13 +22,13 @@ module.exports = {
   },
   data () {
     return {
-      res: "no",
+      res: false,
       is_loading: false,
     }
   },
   methods:{
 
-  async getUserBalance() {
+  async getUserBalance(account) {
     this.is_loading = true;
     let symbol = this.token.symbol;
     let query = {
@@ -60,9 +59,7 @@ module.exports = {
   }
 
 
-  },
-  async mounted(){
-
   }
+
 }
 </script>
