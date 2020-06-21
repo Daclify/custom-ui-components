@@ -1,7 +1,7 @@
 <template>
   <div>
     Hello {{$store.state.ual.accountName}}
-    <q-btn label="test" color="primary" @click="getUserBalance($store.state.ual.accountName)" :loading="is_loading"></q-btn>
+    <q-btn label="test" color="primary" @click="getUserBalance()" :loading="is_loading"></q-btn>
     <pre v-if="res" >{{res}}</pre>
   </div>
 </template>
@@ -20,17 +20,18 @@ module.exports = {
     return {
       res: false,
       is_loading: false,
+      account: this.$store.state.ual.accountName
     }
   },
   methods:{
 
-  async getUserBalance(account) {
+  async getUserBalance() {
     this.is_loading = true;
     let symbol = this.token.symbol;
     let query = {
       json: true,
       code: this.token.contract,
-      scope: account,
+      scope: this.account,
       table: "accounts",
       limit: 1,
     };
